@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <label for="latinInput">Latinica</label>
+  <textarea id="latinInput" placeholder="Unesite tekst..."></textarea>
+  
+  <label for="cyrillicOutput">Ћирилица</label>
+  <textarea id="cyrillicOutput" readonly placeholder="Rezultat..."></textarea>
+
+  <button id="copyBtn" class="primary-btn">Copy to Clipboard</button>
+
+  <div class="footer">
+    v<span id="app-version"></span>
+  </div>
+
+  <script src="../script/utils.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
