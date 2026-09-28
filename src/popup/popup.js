@@ -11,11 +11,33 @@ const letterKeys = letterRow.querySelectorAll('[data-letter]');
 
 let mode = 'lat2cyr';
 let uppercase = false;
+let ready = false;
+
+function saveState() {
+  if (!ready) return;
+  try {
+    const p = browser.storage?.local?.set({ mode, input: sourceInput.value });
+    if (p?.catch) p.catch((err) => console.warn('Failed to save popup state: ', err));
+  } catch (err) {
+    console.warn('Failed to save popup state: ', err);
+  }
+}
+
+async function restoreState() {
+  try {
+    const { mode: savedMode, input } = await browser.storage.local.get(['mode', 'input']);
+    if (savedMode === 'lat2cyr' || savedMode === 'cyr2lat') mode = savedMode;
+    if (typeof input === 'string') sourceInput.value = input;
+  } catch (err) {
+    console.warn('Failed to restore popup state: ', err);
+  }
+}
 
 function convert() {
   resultOutput.value = mode === 'lat2cyr'
     ? convertText(sourceInput.value)
     : convertToLatin(sourceInput.value);
+  saveState();
 }
 
 function render() {
@@ -84,4 +106,8 @@ copyBtn.addEventListener('click', async () => {
 });
 
 render();
-sourceInput.focus();
+restoreState().then(() => {
+  ready = true;
+  render();
+  sourceInput.focus();
+});

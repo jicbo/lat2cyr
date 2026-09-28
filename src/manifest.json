@@ -2,11 +2,12 @@
   "manifest_version": 3,
   "name": "Lat2Cyr",
   "version": "1.0",
-  "description": "Convert Serbian Latin to Cyrillic via popup or context menu.",
+  "description": "Convert between Serbian Latin and Cyrillic via popup or context menu.",
   "permissions": [
     "menus",
     "scripting",
-    "activeTab"
+    "activeTab",
+    "storage"
   ],
   "action": {
     "default_popup": "popup/popup.html",
