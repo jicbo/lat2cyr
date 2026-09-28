@@ -5,13 +5,27 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <label for="latinInput">Latinica</label>
-  <textarea id="latinInput" placeholder="Unesite tekst..."></textarea>
-  
-  <label for="cyrillicOutput">Ћирилица</label>
-  <textarea id="cyrillicOutput" readonly placeholder="Rezultat..."></textarea>
+  <div class="tabs">
+    <button id="tabLat2Cyr" type="button" class="tab active">Lat → Ćir</button>
+    <button id="tabCyr2Lat" type="button" class="tab">Ćir → Lat</button>
+  </div>
 
-  <button id="copyBtn" class="primary-btn">Copy to Clipboard</button>
+  <label for="sourceInput" id="sourceLabel">Latinica</label>
+  <textarea id="sourceInput" placeholder="Unesite tekst..."></textarea>
+
+  <div id="letterRow" class="letter-row">
+    <button type="button" id="shiftKey" class="letter-key shift" title="Uppercase">⇧</button>
+    <button type="button" class="letter-key" data-letter="č">č</button>
+    <button type="button" class="letter-key" data-letter="ć">ć</button>
+    <button type="button" class="letter-key" data-letter="đ">đ</button>
+    <button type="button" class="letter-key" data-letter="š">š</button>
+    <button type="button" class="letter-key" data-letter="ž">ž</button>
+  </div>
+
+  <label for="resultOutput" id="resultLabel">Ћирилица</label>
+  <textarea id="resultOutput" readonly placeholder="Rezultat..."></textarea>
+
+  <button id="copyBtn" type="button" class="primary-btn">Copy to Clipboard</button>
 
   <script src="../script/utils.js"></script>
   <script src="popup.js"></script>

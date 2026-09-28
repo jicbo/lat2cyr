@@ -39,9 +39,9 @@ textarea:focus {
   border-color: #0078d4;
 }
 
-#cyrillicOutput {
+#resultOutput {
   background-color: #252526;
-  color: #b5cea8;
+  color: #ffffff;
   border-style: dashed;
   margin-bottom: 15px;
 }
@@ -61,3 +61,62 @@ textarea:focus {
 .primary-btn:hover { background-color: #2b88d8; }
 .primary-btn:active { transform: scale(0.98); }
 .primary-btn.success { background-color: #107c10; }
+
+.tabs {
+  display: flex;
+  gap: 6px;
+  background-color: #2d2d2d;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 4px;
+  margin-bottom: 12px;
+}
+
+.tab {
+  flex: 1;
+  padding: 8px 4px;
+  background: transparent;
+  color: #888;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.tab.active {
+  background-color: #0078d4;
+  color: white;
+}
+
+.letter-row {
+  display: flex;
+  gap: 6px;
+  margin: -4px 0 12px;
+}
+
+.letter-row[hidden] {
+  display: none;
+}
+
+.letter-key {
+  flex: 1;
+  padding: 8px 0;
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+  border: 1px solid #444;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.letter-key:hover { border-color: #0078d4; }
+.letter-key.shift {
+  color: #4da3e3;
+  border-color: #245a8c;
+}
+.letter-key.shift.active {
+  background-color: #0078d4;
+  border-color: #0078d4;
+  color: white;
+}

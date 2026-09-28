@@ -1,19 +1,31 @@
 browser.runtime.onInstalled.addListener(() => {
   browser.menus.create({
     id: "convert-to-cyrillic",
-    title: "Convert selection",
-    contexts: ["editable"] 
+    title: "Convert to Cyrillic",
+    contexts: ["editable"]
+  });
+  browser.menus.create({
+    id: "convert-to-latin",
+    title: "Convert to Latin",
+    contexts: ["editable"]
   });
 });
 
 browser.menus.onClicked.addListener((info, tab) => {
-  if (info.menuItemId !== "convert-to-cyrillic") return;
+  let convertFn;
+  if (info.menuItemId === "convert-to-cyrillic") {
+    convertFn = convertText;
+  } else if (info.menuItemId === "convert-to-latin") {
+    convertFn = convertToLatin;
+  } else {
+    return;
+  }
 
   const selected = info.selectionText;
   const tabId = tab?.id;
   if (!selected || tabId == null) return;
 
-  const converted = convertText(selected);
+  const converted = convertFn(selected);
 
   browser.scripting.executeScript({
       target: { tabId },

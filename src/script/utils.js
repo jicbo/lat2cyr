@@ -72,3 +72,43 @@ function convertText(text) {
     .map((part) => (/^\p{L}+$/u.test(part) ? convertWord(part) : part))
     .join('');
 }
+
+// Single Cyrillic chars map 1:1 to Latin. Forward is many-to-one
+// (Dj -> Ђ and Đ -> Ђ), so reverse picks the standards: Ђ -> Đ,
+// Џ -> Dž, Љ -> Lj, Њ -> Nj.
+const CYRILLIC_TO_LATIN = {
+  "Џ": "Dž", "џ": "dž",
+  "Ђ": "Đ", "ђ": "đ",
+  "Љ": "Lj", "љ": "lj",
+  "Њ": "Nj", "њ": "nj",
+  "а": "a", "б": "b", "в": "v", "г": "g", "д": "d", "е": "e",
+  "ж": "ž", "з": "z", "и": "i", "ј": "j", "к": "k", "л": "l", "м": "m",
+  "н": "n", "о": "o", "п": "p", "р": "r", "с": "s", "т": "t", "ћ": "ć",
+  "у": "u", "ф": "f", "х": "h", "ц": "c", "ч": "č", "ш": "š",
+  "А": "A", "Б": "B", "В": "V", "Г": "G", "Д": "D", "Е": "E",
+  "Ж": "Ž", "З": "Z", "И": "I", "Ј": "J", "К": "K", "Л": "L", "М": "M",
+  "Н": "N", "О": "O", "П": "P", "Р": "R", "С": "S", "Т": "T", "Ћ": "Ć",
+  "У": "U", "Ф": "F", "Х": "H", "Ц": "C", "Ч": "Č", "Ш": "Š"
+};
+
+// All-caps words need all-caps digraphs (ЏЕП -> DŽEP, not DžEP).
+const CYRILLIC_TO_LATIN_UPPER = {
+  ...CYRILLIC_TO_LATIN, "Џ": "DŽ", "Љ": "LJ", "Њ": "NJ"
+};
+
+const CYRILLIC_PATTERN = Object.keys(CYRILLIC_TO_LATIN)
+  .map(escapeRegExp)
+  .join('|');
+const CYRILLIC_REGEX = new RegExp(CYRILLIC_PATTERN, 'g');
+
+function convertToLatin(text) {
+  if (text == null) return '';
+  return String(text)
+    .split(/(\p{L}+)/u)
+    .map((part) => {
+      if (!/^\p{L}+$/u.test(part)) return part;
+      const map = part === part.toUpperCase() ? CYRILLIC_TO_LATIN_UPPER : CYRILLIC_TO_LATIN;
+      return part.replace(CYRILLIC_REGEX, (m) => map[m] ?? m);
+    })
+    .join('');
+}

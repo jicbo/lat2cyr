@@ -4,8 +4,8 @@ A Firefox extension for converting Serbian Latin script to Cyrillic.
 
 ## Features
 
-- **Popup Converter**: Enter Latin text in the popup to see the Cyrillic equivalent. Copy the result to clipboard.
-- **Context Menu**: Right-click on selected text in editable fields (inputs, textareas, contenteditable elements) and choose "Convert selection" to replace it with Cyrillic.
+- **Popup Converter**: Convert between Serbian Latin and Cyrillic. Use the tabs to switch direction. In Latin mode, shortcut keys insert č, ć, đ, š, ž (⇧ for uppercase). Copy the result to clipboard.
+- **Context Menu**: Right-click on selected text in editable fields (inputs, textareas, contenteditable elements) and choose "Convert to Cyrillic" or "Convert to Latin".
 
 ## Usage
 
