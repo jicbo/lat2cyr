@@ -13,11 +13,17 @@ const LATIN_TO_CYRILLIC = {
   "U": "У", "F": "Ф", "H": "Х", "C": "Ц", "Č": "Ч", "Š": "Ш"
 };
 
+function escapeRegExp(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+const LATIN_PATTERN = Object.keys(LATIN_TO_CYRILLIC)
+  .sort((a, b) => b.length - a.length)
+  .map(escapeRegExp)
+  .join('|');
+const LATIN_REGEX = new RegExp(LATIN_PATTERN, 'g');
+
 function convertText(text) {
-  let result = text;
-  for (const [latin, cyrillic] of Object.entries(LATIN_TO_CYRILLIC)) {
-    const regex = new RegExp(latin, 'g');
-    result = result.replace(regex, cyrillic);
-  }
-  return result;
+  if (text == null) return '';
+  return String(text).replace(LATIN_REGEX, (m) => LATIN_TO_CYRILLIC[m] ?? m);
 }
