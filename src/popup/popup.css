@@ -61,11 +61,3 @@ textarea:focus {
 .primary-btn:hover { background-color: #2b88d8; }
 .primary-btn:active { transform: scale(0.98); }
 .primary-btn.success { background-color: #107c10; }
-
-.footer {
-  margin-top: 15px;
-  font-size: 10px;
-  text-align: right;
-  color: #555;
-  font-weight: bold;
-}

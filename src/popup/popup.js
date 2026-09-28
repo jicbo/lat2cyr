@@ -1,10 +1,6 @@
 const latinInput = document.getElementById('latinInput');
 const cyrillicOutput = document.getElementById('cyrillicOutput');
 const copyBtn = document.getElementById('copyBtn');
-const versionSpan = document.getElementById('app-version');
-
-const manifestData = browser.runtime.getManifest();
-versionSpan.textContent = manifestData.version;
 
 latinInput.addEventListener('input', () => {
   cyrillicOutput.value = convertText(latinInput.value);
