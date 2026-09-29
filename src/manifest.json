@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Lat2Cyr",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Convert between Serbian Latin and Cyrillic via popup or context menu.",
   "permissions": [
     "menus",
@@ -13,25 +13,20 @@
     "default_popup": "popup/popup.html",
     "theme_icons": [
       {
-        "light": "icons/icon-light.svg",
-        "dark": "icons/icon-dark.svg",
-        "size": 16
-      },
-      {
-        "light": "icons/icon-light.svg",
-        "dark": "icons/icon-dark.svg",
-        "size": 32
+        "light": "icons/icon-white.svg",
+        "dark": "icons/icon-black.svg",
+        "size": 48
       }
     ]
+  },
+  "icons": {
+    "48": "icons/icon-blue.svg"
   },
   "background": {
     "scripts": [
       "script/utils.js",
       "script/background.js"
     ]
-  },
-  "icons": {
-    "128": "icons/icon-light.svg"
   },
   "browser_specific_settings": {
     "gecko": {
